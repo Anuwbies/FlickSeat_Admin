@@ -108,37 +108,41 @@ $result = $conn->query($sql);
     <h1>Food and Drink Orders</h1>
 
     <table border="1" cellpadding="10">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>User ID</th>
-                <th>Food</th>
-                <th>Drink</th>
-                <th>Quantity</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($result->num_rows > 0): ?>
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $row["order_id"] ?></td>
-                        <td><?= $row["user_id"] ?></td>
-                        <td>
-                            <?= is_null($row["food_id"]) ? "the customer didn't buy food" : $row["food_id"] ?>
-                        </td>
-                        <td>
-                            <?= is_null($row["drink_id"]) ? "the customer didn't buy drinks" : $row["drink_id"] ?>
-                        </td>
-                        <td><?= $row["quantity"] ?></td>
-                        <td><?= $row["status"] ?></td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr><td colspan="6">No orders found.</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User ID</th>
+            <th>Food</th>
+            <th>Drink</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?= $row["order_id"] ?></td>
+                    <td><?= $row["user_id"] ?></td>
+                    <td>
+                        <?= is_null($row["food_id"]) ? "the customer didn't buy food" : $row["food_id"] ?>
+                    </td>
+                    <td>
+                        <?= is_null($row["drink_id"]) ? "the customer didn't buy drinks" : $row["drink_id"] ?>
+                    </td>
+                    <td><?= $row["quantity"] ?></td>
+                    <td><?= $row["status"] ?></td>
+                    <td>
+                        <button class="delete-btn" onclick="deleteOrder(<?= $row['order_id'] ?>)">Delete</button>
+                    </td>
+                </tr>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <tr><td colspan="7">No orders found.</td></tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 </div>
     </div>
 

@@ -10,10 +10,21 @@ class NotificationHandler {
     }
     
     public function getNotifications() {
-        $result = $this->conn->query("SELECT *, (is_read = FALSE) as is_unread FROM notifications ORDER BY created_at DESC");
+        $result = $this->conn->query("
+            SELECT *, 
+            (is_read = FALSE) as is_unread,
+            CASE 
+                WHEN type = 'new_reservation' THEN '🎟️ New Booking'
+                WHEN type = 'status_change' THEN '🔄 Status Update'
+                WHEN type = 'cancellation' THEN '❌ Cancellation'
+                ELSE 'ℹ️ Notification'
+            END as display_title
+            FROM notifications 
+            ORDER BY created_at DESC
+        ");
+        
         $notifications = [];
         while ($row = $result->fetch_assoc()) {
-            // Ensure is_read is properly cast to boolean
             $row['is_read'] = (bool)$row['is_read'];
             $notifications[] = $row;
         }

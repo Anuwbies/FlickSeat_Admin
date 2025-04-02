@@ -54,16 +54,22 @@ window.addEventListener('load', () => {
 
 
 
-let allTickets = []; // Store all fetched tickets
+// tickets.js
+
+let allTickets = [];
 
 document.addEventListener('DOMContentLoaded', () => {
+    fetchTickets();
+});
+
+function fetchTickets() {
     fetch('fetch_tickets.php')
         .then(response => response.json())
         .then(data => {
             allTickets = data;
-            renderTickets(allTickets); // Initial load
+            renderTickets(allTickets);
         });
-});
+}
 
 function renderTickets(tickets) {
     const tableBody = document.getElementById('ticketsTableBody');
@@ -101,18 +107,20 @@ function filterTickets(status) {
 
 function getTicketActionButtons(ticket) {
     let buttons = '';
-    
-    if (ticket.status === 'pending') {
+    const status = ticket.status.toLowerCase();
+
+    if (status === 'pending') {
         buttons += `
             <button onclick="updateTicket(${ticket.ticket_id}, 'confirmed')">Approve</button>
             <button onclick="updateTicket(${ticket.ticket_id}, 'cancelled')">Cancel</button>
         `;
-    } else if (ticket.status === 'confirmed') {
-        buttons += `<button onclick="updateTicket(${ticket.ticket_id}, 'used')">Mark as Used</button>`;
+    } else if (status === 'confirmed') {
+        // Confirmed gets the "Lapse" button
+        buttons += `<button onclick="updateTicket(${ticket.ticket_id}, 'lapsed')">Lapse</button>`;
     }
 
-    // Show delete button only for statuses other than 'pending'
-    if (['cancelled', 'confirmed', 'used'].includes(ticket.status)) {
+    // Always show delete button if status is cancelled, confirmed, used, or lapsed
+    if (['cancelled', 'confirmed', 'used', 'lapsed'].includes(status)) {
         buttons += `<button class="delete-btn" onclick="deleteTicket(${ticket.ticket_id})">Delete</button>`;
     }
 
@@ -120,31 +128,23 @@ function getTicketActionButtons(ticket) {
 }
 
 
+
 function deleteTicket(id) {
-    if (confirm(`Are you sure you want to delete ticket #${id}? It will be moved to recent reservations.`)) {
-        fetch('delete_ticket.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `ticket_id=${id}`
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                // Refresh both tables
-                loadRecentReservations();
-                fetch('fetch_tickets.php')
-                    .then(response => response.json())
-                    .then(data => {
-                        allTickets = data;
-                        renderTickets(allTickets);
-                    });
-            } else {
-                alert('Failed to delete: ' + data.error);
-            }
-        })
-        .catch(err => console.error('Error deleting ticket:', err));
-    }
+    fetch('delete_ticket.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `ticket_id=${id}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert('Deleted successfully');
+            window.location.reload(); // Reload the page after OK is clicked
+        } else {
+            alert('Failed to delete: ' + data.error);
+        }
+    })
+    .catch(err => console.error('Error deleting ticket:', err));
 }
 
 function updateTicket(id, status) {
@@ -156,96 +156,37 @@ function updateTicket(id, status) {
         })
         .then(res => res.json())
         .then(data => {
+            // Alert first, reload after user closes the alert
             alert(data.message);
-            location.reload();
-        });
+            setTimeout(() => {
+                location.reload();
+            }, 0);
+        })
+        .catch(err => console.error('Error updating ticket:', err));
     }
 }
 
 
-$(document).ready(function() {
-    function loadNotifications(filter = 'all', search = '') {
-        $.ajax({
-            url: 'fetch_notifications.php',
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                console.log("Notifications received:", data);
-                $('#notification-list').html('');
-        
-                if (data.length === 0) {
-                    $('#no-notifications').show();
-                } else {
-                    $('#no-notifications').hide();
-                }
-        
-                data.forEach(function(notification) {
-                    let itemClass = notification.read_status == 0 ? 'unread' : 'read';
-                    $('#notification-list').append(
-                        `<li class='notification-item ${itemClass}' data-id='${notification.id}'>
-                            ${notification.message}
-                            <button class='delete-btn' data-id='${notification.id}'>Delete</button>
-                        </li>`
-                    );
-                });
-            },
-            error: function(xhr, status, error) {
-                console.error("Error fetching notifications:", status, error);
+function deleteOrder(id) {
+    if (confirm(`Are you sure you want to delete order #${id}?`)) {
+        fetch('delete_order.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `order_id=${id}`
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('Order deleted successfully');
+                window.location.reload(); // Reload the page
+            } else {
+                alert('Failed to delete: ' + data.error);
             }
-        });
-        
+        })
+        .catch(err => console.error('Error deleting order:', err));
     }
+}
 
-    function startWebSocket() {
-        let ws = new WebSocket("ws://localhost:8080");
-        ws.onmessage = function(event) {
-            loadNotifications();
-        };
-    }
-
-    loadNotifications();
-    startWebSocket();
-
-    $(document).on('click', '.notification-item', function() {
-        let notificationId = $(this).data('id');
-        $(this).removeClass('unread').addClass('read');
-        
-        $.post('mark_as_read.php', { id: notificationId }, function() {
-            loadNotifications();
-        });
-        
-        $.get('get_notification.php', { id: notificationId }, function(data) {
-            let notification = JSON.parse(data);
-            $('#modal-title').text('Notification Details');
-            $('#modal-description').text(notification.description);
-            $('#notification-modal').fadeIn();
-        });
-    });
-
-    $(document).on('click', '.close-btn', function() {
-        $('#notification-modal').fadeOut();
-    });
-
-    $(document).on('click', '.delete-btn', function(event) {
-        event.stopPropagation();
-        let notificationId = $(this).data('id');
-        $.post('delete_notification.php', { id: notificationId }, function() {
-            loadNotifications();
-        });
-    });
-
-    $('#markAllRead').click(function() {
-        $.post('mark_all_read.php', function() {
-            loadNotifications();
-        });
-    });
-
-    $('#deleteAll').click(function() {
-        $.post('delete_all_notifications.php', function() {
-            loadNotifications();
-        });
-    });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     const toast = document.getElementById('toast');

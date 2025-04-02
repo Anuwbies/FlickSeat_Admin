@@ -137,18 +137,18 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr data-id='{$row['food_id']}'>
-                                <td>{$row['food_id']}</td>
-                                <td>{$row['food_name']}</td>
-                                <td>₱{$row['food_price']}</td>
-                                <td class='actions'>
-                                    <button class='edit-btn' onclick='openEditModal(\"food\", {$row['food_id']})'>
-                                        <i class='fas fa-edit'></i>
-                                    </button>
-                                    <button class='delete-btn' onclick='confirmDelete(\"food\", {$row['food_id']})'>
-                                        <i class='fas fa-trash'></i>
-                                    </button>
-                                </td>
-                              </tr>";
+        <td>{$row['food_id']}</td>
+        <td>{$row['food_name']}</td>
+        <td>₱" . round($row['food_price']) . "</td>
+        <td class='actions'>
+            <button class='edit-btn' onclick='openEditModal(\"food\", {$row['food_id']})'>
+                <i class='fas fa-edit'></i>
+            </button>
+            <button class='delete-btn' onclick='confirmDelete(\"food\", {$row['food_id']})'>
+                <i class='fas fa-trash'></i>
+            </button>
+        </td>
+      </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='4'>No food items found</td></tr>";
@@ -190,24 +190,24 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr data-id='{$row['movie_id']}'>
-                                <td>{$row['movie_id']}</td>
-                                <td>{$row['title']}</td>
-                                <td>{$row['genre']}</td>
-                                <td>{$row['release_date']}</td>
-                                <td>{$row['duration']}</td>
-                                <td>{$row['rating']}</td>
-                                <td>₱{$row['movie_price']}</td>
-                                <td>{$row['status']}</td>
-                                <td>{$row['tmdb_id']}</td>
-                                <td class='actions'>
-                                    <button class='edit-btn' onclick='openEditModal(\"movies\", {$row['movie_id']})'>
-                                        <i class='fas fa-edit'></i>
-                                    </button>
-                                    <button class='delete-btn' onclick='confirmDelete(\"movies\", {$row['movie_id']})'>
-                                        <i class='fas fa-trash'></i>
-                                    </button>
-                                </td>
-                              </tr>";
+        <td>{$row['movie_id']}</td>
+        <td>{$row['title']}</td>
+        <td>{$row['genre']}</td>
+        <td>{$row['release_date']}</td>
+        <td>{$row['duration']}</td>
+        <td>{$row['rating']}</td>
+        <td>₱" . round($row['movie_price']) . "</td>
+        <td>{$row['status']}</td>
+        <td>{$row['tmdb_id']}</td>
+        <td class='actions'>
+            <button class='edit-btn' onclick='openEditModal(\"movies\", {$row['movie_id']})'>
+                <i class='fas fa-edit'></i>
+            </button>
+            <button class='delete-btn' onclick='confirmDelete(\"movies\", {$row['movie_id']})'>
+                <i class='fas fa-trash'></i>
+            </button>
+        </td>
+      </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='10'>No movies found</td></tr>";
@@ -243,18 +243,18 @@
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<tr data-id='{$row['drink_id']}'>
-                                <td>{$row['drink_id']}</td>
-                                <td>{$row['drink_name']}</td>
-                                <td>₱{$row['drink_price']}</td>
-                                <td class='actions'>
-                                    <button class='edit-btn' onclick='openEditModal(\"drinks\", {$row['drink_id']})'>
-                                        <i class='fas fa-edit'></i>
-                                    </button>
-                                    <button class='delete-btn' onclick='confirmDelete(\"drinks\", {$row['drink_id']})'>
-                                        <i class='fas fa-trash'></i>
-                                    </button>
-                                </td>
-                              </tr>";
+        <td>{$row['drink_id']}</td>
+        <td>{$row['drink_name']}</td>
+        <td>₱" . round($row['drink_price']) . "</td>
+        <td class='actions'>
+            <button class='edit-btn' onclick='openEditModal(\"drinks\", {$row['drink_id']})'>
+                <i class='fas fa-edit'></i>
+            </button>
+            <button class='delete-btn' onclick='confirmDelete(\"drinks\", {$row['drink_id']})'>
+                <i class='fas fa-trash'></i>
+            </button>
+        </td>
+      </tr>";
                     }
                 } else {
                     echo "<tr><td colspan='4'>No drink items found</td></tr>";
@@ -632,7 +632,7 @@ function updateTableRow(type, id, data) {
                     <td>${data.release_date}</td>
                     <td>${data.duration}</td>
                     <td>${data.rating}</td>
-                    <td>₹${data.movie_price}</td>
+                    <td>₱${Math.round(data.movie_price)}</td>
                     <td>${data.status}</td>
                     <td>${data.tmdb_id}</td>
                     <td class="actions">
@@ -650,7 +650,7 @@ function updateTableRow(type, id, data) {
                 row.innerHTML = `
                     <td>${data.id}</td>
                     <td>${data[nameField] || data.name}</td>
-                    <td>₹${data[priceField] || data.price}</td>
+                    <td>₱${Math.round(data[priceField] || data.price)}</td>
                     <td class="actions">
                         <button class="edit-btn" onclick="openEditModal('${type}', ${data.id})">
                             <i class="fas fa-edit"></i>
@@ -676,7 +676,7 @@ function updateTableRow(type, id, data) {
                 <td>${data.release_date}</td>
                 <td>${data.duration}</td>
                 <td>${data.rating}</td>
-                <td>₹${data.movie_price}</td>
+                <td>₱${Math.round(data.movie_price)}</td>
                 <td>${data.status}</td>
                 <td>${data.tmdb_id}</td>
                 <td class="actions">
@@ -692,7 +692,7 @@ function updateTableRow(type, id, data) {
             newRow.innerHTML = `
                 <td>${data.id}</td>
                 <td>${data.name}</td>
-                <td>₹${data.price}</td>
+                <td>₱${Math.round(data.price)}</td>
                 <td class="actions">
                     <button class="edit-btn" onclick="openEditModal('${type}', ${data.id})">
                         <i class="fas fa-edit"></i>
@@ -793,6 +793,37 @@ window.addEventListener("resize", () => {
 // ✅ Keep sidebar state consistent across page reloads and navigation
 window.addEventListener('load', () => {
     updateMainContentMargin(); // Ensure the content is positioned correctly after load
+});
+
+fetch('add_item.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `item_name=${encodeURIComponent(itemName)}&item_price=${encodeURIComponent(itemPrice)}&item_type=${encodeURIComponent(itemType)}`
+})
+.then(res => res.json())
+.then(data => {
+    if (data.success) {
+        const item = data.item;
+
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.item_name}</td>
+            <td>₱${item.item_price}</td>
+            <td>
+                <button onclick="editItem(${item.id})">✏️</button>
+                <button onclick="deleteItem(${item.id})">🗑️</button>
+            </td>
+        `;
+
+        const targetTable = item.item_type === 'food'
+            ? document.getElementById('foodTableBody')
+            : document.getElementById('drinksTableBody');
+
+        targetTable.appendChild(newRow);
+    } else {
+        alert('Error: ' + data.error);
+    }
 });
 
 // Example usage:

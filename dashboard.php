@@ -117,23 +117,20 @@ if (!isset($_SESSION['user_id'])) {
         </div>
         <h1 class="text3">Recent Reservations: </h1>
         <table id="reservationsTable">
-  <thead>
-    <tr>
-      <th>RESERVATION ID</th>
-      <th>TICKET ID</th>
-      <th>USER ID</th>
-      <th>MOVIE ID</th>
-      <th>SHOWTIME ID</th>
-      <th>SEAT ID</th>
-      <th>PURCHASE DATE</th>
-      <th>TICKET PRICE</th>
-      <th>STATUS</th>
-      <th>DELETED AT</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- JavaScript will populate this -->
-  </tbody>
+        <thead>
+        <tr>
+            <th>TICKET_ID</th>
+            <th>USER_ID</th>
+            <th>MOVIE_ID</th>
+            <th>SHOWTIME_ID</th>
+            <th>SEAT_ID</th>
+            <th>SEAT_COUNT</th>
+            <th>PURCHASE_DATE</th>
+            <th>TICKET_PRICE</th>
+            <th>STATUS</th>
+        </tr>
+    </thead>
+    <tbody id="recentReservationsBody"></tbody>
 </table>
 
         
@@ -414,31 +411,34 @@ function updateSalesChart() {
 }
 
 fetch('fetch_recent.php')
-    .then(response => response.json())
-    .then(data => {
-      const tableBody = document.querySelector("#reservationsTable tbody");
-      tableBody.innerHTML = ""; // Clear existing rows if any
+  .then(response => response.json())
+  .then(data => {
+    const tableBody = document.querySelector("#reservationsTable tbody");
+    tableBody.innerHTML = "";
 
-      data.forEach(row => {
-        const tr = document.createElement("tr");
+    const limitedData = data.slice(0, 10); // 👈 Limit to 10 rows
 
-        tr.innerHTML = `
-          <td>${row.reservation_id}</td>
-          <td>${row.ticket_id}</td>
-          <td>${row.user_id}</td>
-          <td>${row.movie_id}</td>
-          <td>${row.showtime_id}</td>
-          <td>${row.seat_id}</td>
-          <td>${row.purchase_date}</td>
-          <td>${row.ticket_price}</td>
-          <td>${row.status}</td>
-          <td>${row.deleted_at}</td>
-        `;
+    limitedData.forEach(row => {
+      const tr = document.createElement("tr");
 
-        tableBody.appendChild(tr);
-      });
-    })
-    .catch(error => console.error("Error fetching recent reservations:", error));
+      tr.innerHTML = `
+        <td>${row.ticket_id}</td>
+        <td>${row.user_id}</td>
+        <td>${row.movie_id}</td>
+        <td>${row.showtime_id}</td>
+        <td>${row.seat_id}</td>
+        <td>${row.seat_count}</td>
+        <td>${row.purchase_date}</td>
+        <td>${row.ticket_price}</td>
+        <td>${row.status}</td>
+      `;
+
+      tableBody.appendChild(tr);
+    });
+  })
+  .catch(error => console.error("Error fetching recent reservations:", error));
+
+
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 // Database connection
 $servername = "localhost";
 $username = "root";
-$password = ""; // Default password for XAMPP
+$password = "";
 $database = "flickseat_db";
 
 // Create connection
@@ -13,21 +13,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch recent reservations
-$sql = "SELECT * FROM recent_reservations";
+// Fetch only recently approved (confirmed) tickets
+$sql = "SELECT * FROM tickets WHERE status = 'confirmed' ORDER BY purchase_date DESC LIMIT 10";
 $result = $conn->query($sql);
 
-// Initialize array to hold data
+// Prepare the data array
 $data = [];
 
 if ($result->num_rows > 0) {
-    // Fetch each row into the data array
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
 }
 
-// Output data as JSON (you can modify this to output HTML if needed)
+// Return as JSON
 header('Content-Type: application/json');
 echo json_encode($data);
 

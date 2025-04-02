@@ -662,7 +662,7 @@ function renderNotifications(notifications) {
     notificationList.innerHTML = '';
     
     notifications.forEach(notification => {
-        const isUnread = !notification.is_read; // Explicit check
+        const isUnread = !notification.is_read;
         
         const notificationItem = document.createElement('div');
         notificationItem.className = `notification-item ${isUnread ? 'unread' : ''}`;
@@ -670,7 +670,9 @@ function renderNotifications(notifications) {
         
         notificationItem.innerHTML = `
             <div class="notification-content">
-                <div class="notification-title">${notification.title}</div>
+                <div class="notification-title">
+                    ${notification.display_title || notification.title}
+                </div>
                 <div class="notification-message">${notification.message}</div>
                 <div class="notification-time">${formatTime(notification.created_at)}</div>
             </div>
@@ -876,7 +878,7 @@ function showErrorModal(title, detail) {
 console.log("Sending user_id:", USER_ID);
 
 loadNotifications();
-            setInterval(loadNotifications, 30000);
+            setInterval(loadNotifications, 6000);
         }); // This closes the DOMContentLoaded event listener
 
 

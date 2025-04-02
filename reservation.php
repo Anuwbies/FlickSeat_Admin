@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Flickseat</title>
 </head>
@@ -93,26 +94,28 @@
         <button class="buttton3" onclick="filterTickets('confirmed')">Show Confirmed</button>
         <button class="buttton3" onclick="filterTickets('used')">Show Used</button>
         <button class="buttton3" onclick="filterTickets('cancelled')">Show Cancelled</button>
+        <button class="buttton3" onclick="filterTickets('lapsed')">Show Lapsed</button>
+
     </div>
 
     <table>
-        <thead>
-            <tr>
-                <th>Ticket ID</th>
-                <th>User ID</th>
-                <th>Movie ID</th>
-                <th>Seat ID</th>
-                <th>Showtime ID</th>
-                <th>Purchase Date</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="ticketsTableBody">
-            <!-- Ticket data will be populated by JS -->
-        </tbody>
-    </table>
+  <thead>
+    <tr>
+      <th>TICKET ID</th>
+      <th>USER ID</th>
+      <th>MOVIE ID</th>
+      <th>SEAT ID</th>
+      <th>SHOWTIME ID</th>
+      <th>PURCHASE DATE</th>
+      <th>PRICE</th>
+      <th>STATUS</th>
+      <th>ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody id="ticketsTableBody"> <!-- ✅ Must match JS -->
+    <!-- Tickets will be rendered here -->
+  </tbody>
+</table>
 </div>
 
     <script src="script.js"></script>
