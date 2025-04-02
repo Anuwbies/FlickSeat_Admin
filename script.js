@@ -104,7 +104,6 @@ function filterTickets(status) {
         renderTickets(filtered);
     }
 }
-
 function getTicketActionButtons(ticket) {
     let buttons = '';
     const status = ticket.status.toLowerCase();
@@ -115,8 +114,11 @@ function getTicketActionButtons(ticket) {
             <button onclick="updateTicket(${ticket.ticket_id}, 'cancelled')">Cancel</button>
         `;
     } else if (status === 'confirmed') {
-        // Confirmed gets the "Lapse" button
-        buttons += `<button onclick="updateTicket(${ticket.ticket_id}, 'lapsed')">Lapse</button>`;
+        // Confirmed shows both "Mark as Used" and "Lapse"
+        buttons += `
+            <button onclick="updateTicket(${ticket.ticket_id}, 'used')">Mark as Used</button>
+            <button onclick="updateTicket(${ticket.ticket_id}, 'lapsed')">Lapse</button>
+        `;
     }
 
     // Always show delete button if status is cancelled, confirmed, used, or lapsed
@@ -126,6 +128,7 @@ function getTicketActionButtons(ticket) {
 
     return buttons;
 }
+
 
 
 
