@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="nav-tooltip">Reservations</span>
                 </li>
                 <li class="nav-item">
-                    <a href="notif.html" class="nav-link">
+                    <a href="notifications.php" class="nav-link">
                         <span class="material-symbols-rounded">notifications</span>
                         <span class="nav-label">Notifications</span>
                     </a>
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Username Field -->
             <div class="input-group">
-                <label>Change Username:</label>
+                <h2 class="text6">Change Username:</h2>
                 <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" required>
                 <small id="usernameFeedback" class="feedback-message">
                     <?php echo $errorMessage ?: ''; ?>
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Password Field -->
             <div class="input-group">
-    <label>Change Password:</label>
+    <h2 class="text6">Change Password:</h2>
     <div class="password-wrapper">
         <input type="password" id="password" name="password" placeholder="New Password" required>
         <span id="togglePassword" class="toggle-password">&#128065;</span>

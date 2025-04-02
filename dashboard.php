@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
                     <span class="nav-tooltip">Reservations</span>
                 </li>
                 <li class="nav-item">
-                    <a href="notif.html" class="nav-link">
+                    <a href="notifications.php" class="nav-link">
                         <span class="material-symbols-rounded">notifications</span>
                         <span class="nav-label">Notifications</span>
                     </a>
