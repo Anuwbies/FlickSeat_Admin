@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-$stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
+$stmt = $conn->prepare("SELECT * FROM admins WHERE id = :id");
 $stmt->bindParam(':id', $user_id);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // ✅ Check if the new username already exists (EXCLUDING current user)
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username AND id != :id");
+    $stmt = $conn->prepare("SELECT id FROM admins WHERE username = :username AND id != :id");
     $stmt->bindParam(':username', $new_username);
     $stmt->bindParam(':id', $user_id);
     $stmt->execute();
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMessage = 'Username already taken. Please choose another.';
     } else {
         // ✅ If username is available, update the profile
-        $stmt = $conn->prepare("UPDATE users SET username = :username, password = :password WHERE id = :id");
+        $stmt = $conn->prepare("UPDATE admins SET username = :username, password = :password WHERE id = :id");
         $stmt->bindParam(':username', $new_username);
         $stmt->bindParam(':password', $new_password);
         $stmt->bindParam(':id', $user_id);
@@ -105,10 +105,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </a>
                     <span class="nav-tooltip">Pagkain</span>
                 </li>
+                <li class="nav-item">
+                    <a href="users.php" class="nav-link">
+                        <span class="material-symbols-rounded">groups</span>
+                        <span class="nav-label">Users</span>
+                    </a>
+                    <span class="nav-tooltip">Accounts</span>
+                </li>
             </ul>
             <ul class="nav-list secondary-nav">
             <li class="nav-item">
-                    <a href="settings.html" class="nav-link">
+                    <a href="settings.php" class="nav-link">
                         <span class="material-symbols-rounded">settings</span>
                         <span class="nav-label">Settings</span>
                     </a>

@@ -2,6 +2,7 @@
 include 'wala.php';
 
 // Retrieve form data
+$id = $_POST['movie_id'];
 $title = $_POST['title'];
 $genre = $_POST['genre'];
 $release_date = $_POST['release_date'];
@@ -12,17 +13,16 @@ $status = $_POST['status'];
 $tmdb_id = $_POST['tmdb_id'];
 $overview = $_POST['overview'];
 
-// Prepare insert query
-$sql = "INSERT INTO movie (title, genre, release_date, duration, rating, movie_price, status, tmdb_id, overview) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+// Prepare update query
+$sql = "UPDATE movie SET title=?, genre=?, release_date=?, duration=?, rating=?, movie_price=?, status=?, tmdb_id=?, overview=? WHERE movie_id=?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sssssdsss", $title, $genre, $release_date, $duration, $rating, $movie_price, $status, $tmdb_id, $overview);
+$stmt->bind_param("sssssdsssi", $title, $genre, $release_date, $duration, $rating, $movie_price, $status, $tmdb_id, $overview, $id);
 
 if ($stmt->execute()) {
     echo json_encode([
         'success' => true,
-        'insert_id' => $conn->insert_id,
         'data' => [
-            'id' => $conn->insert_id,
+            'id' => $id,
             'title' => $title,
             'genre' => $genre,
             'release_date' => $release_date,
@@ -35,6 +35,6 @@ if ($stmt->execute()) {
         ]
     ]);
 } else {
-    echo json_encode(['success' => false, 'message' => 'Failed to add movie.']);
+    echo json_encode(['success' => false, 'message' => 'Failed to update movie.']);
 }
 ?>

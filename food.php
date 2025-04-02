@@ -26,7 +26,7 @@ $result = $conn->query($sql);
     <title>Flickseat</title>
 </head>
 <body>
-    <aside class="sidebar">
+<aside class="sidebar">
         <header class="sidebar-header">
             <a href="#" class="header-logo">
                 <img src="Logo.png" alt="logo">
@@ -62,16 +62,23 @@ $result = $conn->query($sql);
                     <span class="nav-tooltip">Notifications</span>
                 </li>
                 <li class="nav-item">
-                    <a href="dashboard.php" class="nav-link">
+                    <a href="food.php" class="nav-link">
                         <span class="material-symbols-rounded">fastfood</span>
                         <span class="nav-label">Food & Drinks</span>
                     </a>
                     <span class="nav-tooltip">Pagkain</span>
                 </li>
+                <li class="nav-item">
+                    <a href="users.php" class="nav-link">
+                        <span class="material-symbols-rounded">groups</span>
+                        <span class="nav-label">Users</span>
+                    </a>
+                    <span class="nav-tooltip">Accounts</span>
+                </li>
             </ul>
             <ul class="nav-list secondary-nav">
             <li class="nav-item">
-                    <a href="settings.html" class="nav-link">
+                    <a href="settings.php" class="nav-link">
                         <span class="material-symbols-rounded">settings</span>
                         <span class="nav-label">Settings</span>
                     </a>
@@ -100,24 +107,6 @@ $result = $conn->query($sql);
     <div class="orders-container">
     <h1>Food and Drink Orders</h1>
 
-    <div class="legend-container">
-                <div class="legend-box">
-                    <h3>Food Items Legend</h3>
-                    <ul class="legend-list">
-                        <li>Food ID 1 = Buttered Popcorn (₱70)</li>
-                        <li>Food ID 2 = Nachos with Cheese (₱100)</li>
-                        <li>Food ID 3 = Hotdog (₱50)</li>
-                    </ul>
-                </div>
-                <div class="legend-box">
-                    <h3>Drink Items Legend</h3>
-                    <ul class="legend-list">
-                        <li>Drink ID 1 = Water (₱20)</li>
-                        <li>Drink ID 2 = Coca Cola (₱25)</li>
-                        <li>Drink ID 3 = Iced Tea (₱30)</li>
-                    </ul>
-                </div>
-            </div>
     <table border="1" cellpadding="10">
         <thead>
             <tr>

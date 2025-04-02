@@ -301,6 +301,60 @@ if (isset($_SESSION['delete_message'])) {
         }
     });
 
+    const sidebar = document.querySelector(".sidebar");
+const sidebarToggler = document.querySelector(".sidebar-toggler");
+const menuToggler = document.querySelector(".menu-toggler");
+const mainContent = document.querySelector(".main-content");
+
+const collapsedSidebarWidth = "85px";
+const expandedSidebarWidth = "280px";
+
+// ✅ Load sidebar state IMMEDIATELY before any DOM updates
+const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+if (isCollapsed) {
+    sidebar.classList.add('collapsed');
+} else {
+    sidebar.classList.remove('collapsed');
+}
+
+// Function to update main content position
+const updateMainContentMargin = () => {
+    if (sidebar.classList.contains("collapsed")) {
+        mainContent.style.marginLeft = collapsedSidebarWidth;
+    } else {
+        mainContent.style.marginLeft = expandedSidebarWidth;
+    }
+};
+
+// ✅ Ensure margin is updated immediately after setting sidebar state
+updateMainContentMargin();
+
+// Toggle sidebar and adjust main content
+sidebarToggler.addEventListener("click", () => {
+    const isCollapsed = sidebar.classList.toggle("collapsed");
+    // Store sidebar state in localStorage
+    localStorage.setItem('sidebarCollapsed', isCollapsed);
+    updateMainContentMargin();
+});
+
+// Ensure main content is adjusted on window resize
+window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+        sidebar.style.height = "calc(100vh - 32px)";
+        updateMainContentMargin();
+    } else {
+        sidebar.classList.remove("collapsed");
+        sidebar.style.height = "auto";
+        toggleMenu(sidebar.classList.contains("menu-active"));
+        updateMainContentMargin();
+    }
+});
+
+// ✅ Keep sidebar state consistent across page reloads and navigation
+window.addEventListener('load', () => {
+    updateMainContentMargin(); // Ensure the content is positioned correctly after load
+});
+
 
 </script>
 

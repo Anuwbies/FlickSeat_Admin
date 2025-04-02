@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2025 at 11:50 AM
+-- Generation Time: Apr 02, 2025 at 08:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`) VALUES
-(0, 'ashi', '$2y$10$AR4VmAI9JQCZjb/jKoMHCe8/CvlzI4wjYuvgxlZ2xBJCqHQyVT37C');
+(0, 'ashi', '$2y$10$AR4VmAI9JQCZjb/jKoMHCe8/CvlzI4wjYuvgxlZ2xBJCqHQyVT37C'),
+(0, 'wawa', '$2y$10$aV.Om.Bz3dk6w7nHAgQf9.R6Rl4oqbne7VTy0yR5eu4PpdYDJyUSO');
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,14 @@ CREATE TABLE `drinks` (
 INSERT INTO `drinks` (`drink_id`, `drink_name`, `drink_price`) VALUES
 (1, 'Water', 20),
 (2, 'Coca Cola', 25),
-(3, 'Iced Tea', 30);
+(3, 'Iced Tea', 30),
+(4, 'asdasd', 234),
+(5, 'asdasd', 234),
+(6, 'asdasd', 234),
+(8, 'beer', 23),
+(9, 'wa', 123),
+(10, 'vbn', 7878),
+(11, 'uio', 90);
 
 -- --------------------------------------------------------
 
@@ -78,9 +86,18 @@ CREATE TABLE `foods` (
 --
 
 INSERT INTO `foods` (`food_id`, `food_name`, `food_price`) VALUES
-(1, 'Buttered Popcorn', 70),
+(1, 'Buttered Popcorn', 90),
 (2, 'Nachos with Cheese', 100),
-(3, 'Hot Dog', 50);
+(3, 'Hot Dog', 50),
+(5, 'asdasd', 234),
+(6, 'asdasd', 234),
+(7, 'asdasd', 234),
+(8, 'asdasd', 123),
+(9, 'asdasd', 234),
+(10, 'asdasd', 234),
+(11, 'asd', 123),
+(13, 'hnhn', 657),
+(14, 'ui', 899);
 
 -- --------------------------------------------------------
 
@@ -106,7 +123,7 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`movie_id`, `title`, `genre`, `release_date`, `duration`, `overview`, `rating`, `tmdb_id`, `status`, `movie_price`) VALUES
-(1, 'Captain America: Brave New World', 'Action - Thriller - Science Fiction', '2025-02-14', '1h 59m', 'After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true mastermind has the entire world seeing red.', 6.2, 822119, 'now showing', 400),
+(1, 'Captain America: Brave New World', 'Action - Thriller - Science Fiction', '2025-02-14', '155', 'asdasdads', 6.9, 822119, 'now showing', 400),
 (2, 'Companion', 'Science Fiction - Thriller', '2025-01-29', '1h 37m', 'During a weekend getaway at a secluded lakeside estate, a group of friends finds themselves entangled in a web of secrets, deception, and advanced technology. As tensions rise and loyalties are tested, they uncover unsettling truths about themselves and the world around them.', 7.0, 1084199, 'now showing', 250),
 (3, 'Wicked', 'Drama - Romance - Fantasy', '2024-11-20', '2h 42m', 'In the land of Oz, ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda at Shiz University, and the two\'s unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.', 6.9, 402431, 'now showing', 350),
 (4, 'Sonic the Hedgehog 3', 'Action - Science Fiction - Comedy - Family', '2025-01-15', '1h 50m', 'Sonic, Knuckles, and Tails reunite against a powerful new adversary, Shadow, a mysterious villain with powers unlike anything they have faced before. With their abilities outmatched in every way, Team Sonic must seek out an unlikely alliance in hopes of stopping Shadow and protecting the planet.', 7.8, 939243, 'now showing', 300),
@@ -114,7 +131,24 @@ INSERT INTO `movie` (`movie_id`, `title`, `genre`, `release_date`, `duration`, `
 (6, 'Nosferatu', 'Horror - Fantasy', '2025-02-26', '2h 13m', 'A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.', 6.7, 426063, 'coming soon', 0),
 (7, 'Flow', 'Animation - Fantasy - Adventure', '2025-03-05', '1h 25m', 'A solitary cat, displaced by a great flood, finds refuge on a boat with various species and must navigate the challenges of adapting to a transformed world together.', 8.3, 823219, 'coming soon', 0),
 (8, 'The Seed of the Sacred Fig', 'Drama - Thriller - Crime', '2025-03-05', '2h 47m', 'Investigating judge Iman grapples with paranoia amid political unrest in Tehran. When his gun vanishes, he suspects his wife and daughters, imposing draconian measures that strain family ties as societal rules crumble.', 7.7, 1278263, 'coming soon', 0),
-(9, 'A Minecraft Movie', 'Family, Comedy, Adventure, Fantasy', '2025-04-04', '1h 41m', 'Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld: a bizarre, cubic wonderland that thrives on imagination. To get back home, they\'ll have to master this world while embarking on a magical quest with an unexpected, expert crafter, Steve.', 7.1, 950387, 'coming soon', 0);
+(9, 'A Minecraft Movie', 'Family, Comedy, Adventure, Fantasy', '2025-04-04', '1h 41m', 'Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld: a bizarre, cubic wonderland that thrives on imagination. To get back home, they\'ll have to master this world while embarking on a magical quest with an unexpected, expert crafter, Steve.', 7.1, 950387, 'coming soon', 0),
+(18, 'asdasd', 'sdasd', '2025-03-20', 'asdasd', 'adadasdas asdasdasda a sdadsasd ', 1.0, 90, 'coming soon', 123),
+(19, '68678', 'hkhjk', '2025-04-25', '8989', 'hjjkhjkhk', 8.9, 8989, 'now showing', 789),
+(20, 'fhfghfh', 'fhfghfh', '2025-04-10', '545', 'asdasd adas ', 5.8, 879, 'coming soon', 5656);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -138,17 +172,17 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `user_id`, `food_id`, `drink_id`, `quantity`, `status`, `order_date`, `created_at`) VALUES
-(62, 10, NULL, 2, 2, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(63, 10, 2, NULL, 1, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(64, 10, 1, NULL, 2, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(65, 10, NULL, 1, 1, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(66, 10, 3, NULL, 2, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(67, 10, NULL, 3, 1, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(68, 10, NULL, 3, 1, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(69, 10, 1, NULL, 1, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(70, 10, 3, NULL, 2, 'available', '2025-03-27 12:44:46', '2025-03-27 12:48:06'),
-(71, 10, 1, NULL, 2, 'available', '2025-03-27 12:49:20', '2025-03-27 12:49:20'),
-(72, 10, 2, NULL, 1, 'available', '2025-03-27 12:49:20', '2025-03-27 12:49:20');
+(62, 10, NULL, 2, 2, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(63, 10, 2, NULL, 1, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(64, 10, 1, NULL, 2, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(65, 10, NULL, 1, 1, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(66, 10, 3, NULL, 2, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(67, 10, NULL, 3, 1, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(68, 10, NULL, 3, 1, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(69, 10, 1, NULL, 1, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(70, 10, 3, NULL, 2, 'available', '2025-03-27 04:44:46', '2025-03-27 04:48:06'),
+(71, 10, 1, NULL, 2, 'available', '2025-03-27 04:49:20', '2025-03-27 04:49:20'),
+(72, 10, 2, NULL, 1, 'available', '2025-03-27 04:49:20', '2025-03-27 04:49:20');
 
 -- --------------------------------------------------------
 
@@ -183,23 +217,6 @@ INSERT INTO `recent_reservations` (`reservation_id`, `ticket_id`, `user_id`, `mo
 (7, 4, 11, 1, 1, 4, '0000-00-00 00:00:00', 400.00, 'used', '2025-03-31 08:57:43'),
 (8, 1, 11, 1, 1, 1, '0000-00-00 00:00:00', 400.00, 'used', '2025-03-31 09:30:36'),
 (9, 4, 1, 1, 1, 5, '0000-00-00 00:00:00', 400.00, 'used', '2025-03-31 09:39:52');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `recent_tickets`
---
-
-CREATE TABLE `recent_tickets` (
-  `ticket_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `movie_id` int(11) NOT NULL,
-  `showtime_id` int(11) NOT NULL,
-  `seat_id` int(11) NOT NULL,
-  `purchase_date` datetime DEFAULT current_timestamp(),
-  `ticket_price` int(11) NOT NULL,
-  `status` enum('pending','booked','cancelled','used') DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4134,13 +4151,6 @@ CREATE TABLE `tickets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tickets`
---
-
-INSERT INTO `tickets` (`ticket_id`, `user_id`, `movie_id`, `showtime_id`, `seat_id`, `purchase_date`, `ticket_price`, `status`) VALUES
-(1, 1, 1, 1, 1, '2025-03-31 11:44:55', 400, 'used');
-
---
 -- Triggers `tickets`
 --
 DELIMITER $$
@@ -4181,7 +4191,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `email`, `username`, `password`) VALUES
-(1, 'cuh@gmail.com', 'cuh', '$2y$10$aEcgNC08m837zC/lUpoMWeTh.LR2xSHdvgQZ150ug0LJRwybCJekq'),
 (2, 'qwe@gmail.com', 'qwe', '$2y$10$dRvU2b9OmtOadjwVkm9dTuBMwbcTdGheZP2DR8r93nejoXxUHhsoG'),
 (3, 'zxc', 'zxc', '$2y$10$YcwynZkQ8ej2awH103bTsOQ6omPcNYWfIICEoBx6PgLcYp8Aq1EmS'),
 (4, 'asd@gmail.com', 'asd', '$2y$10$H1eFJ.DwIhVUK/NJsWyql.3yNCmM5cL0hXsFXi1bRoxDc03zj0D2i'),
@@ -4190,7 +4199,10 @@ INSERT INTO `users` (`user_id`, `email`, `username`, `password`) VALUES
 (7, 'tsk@gmail.com', 'tsk', '$2y$10$KYFlbkghbib6vCMdpn3aHOVWfqcbgmyELQ01hUNhvmJcGp6RJr77y'),
 (8, 'meow@gmail.com', 'meow', '$2y$10$sMFYAx9lQpEf3l1huGvYceRC4oVigqhxYbGIqFxBdKZS8GxzfMIvO'),
 (9, 'huh@gmail.com', 'huh', '$2y$10$aBFN0TaLErrDNnY3l8zUC.JnS5u82kduFodR2LfqOef5D9m4uSo2S'),
-(10, 'josh@example.com', 'joshua', '$2y$10$VMQF2XUZgrNf8x8fREZQ2OHhGKb/m4PS80Yyajc85RKVdJIXOwVnS');
+(10, 'sampleuser@example.com', 'sampleuser', 'hashed_password_10'),
+(107, 'mike.tan@example.com', 'miketan', 'hashed_password_3'),
+(108, 'alice.lee@example.com', 'alicelee', 'hashed_password_4'),
+(109, 'bob.mendoza@example.com', 'bobmendoza', 'hashed_password_5');
 
 --
 -- Triggers `users`
@@ -4241,6 +4253,12 @@ ALTER TABLE `movie`
   ADD UNIQUE KEY `tmdb_id` (`tmdb_id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -4259,16 +4277,6 @@ ALTER TABLE `recent_reservations`
   ADD KEY `movie_id` (`movie_id`),
   ADD KEY `showtime_id` (`showtime_id`),
   ADD KEY `seat_id` (`seat_id`);
-
---
--- Indexes for table `recent_tickets`
---
-ALTER TABLE `recent_tickets`
-  ADD PRIMARY KEY (`ticket_id`),
-  ADD KEY `fk_tickets_user` (`user_id`),
-  ADD KEY `fk_tickets_movie` (`movie_id`),
-  ADD KEY `fk_tickets_showtime` (`showtime_id`),
-  ADD KEY `fk_tickets_seat` (`seat_id`);
 
 --
 -- Indexes for table `seats`
@@ -4311,19 +4319,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `drinks`
 --
 ALTER TABLE `drinks`
-  MODIFY `drink_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `drink_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -4336,12 +4350,6 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `recent_reservations`
   MODIFY `reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `recent_tickets`
---
-ALTER TABLE `recent_tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `seats`
@@ -4365,7 +4373,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- Constraints for dumped tables
